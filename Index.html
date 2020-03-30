@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="https://via.placeholder.com/70x70">
+    <link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
+
+    <meta charset="utf-8">
+    <meta name="description" content="My description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="odometer.js"></script>
+    <link rel="stylesheet" href="odometer.css">
+    <title>Corona Counter</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1><a href="/">Corona Counter</a></h1>
+            <ul>
+                <li>Home</li>
+                <li><a href="india.html">India</a></li>
+            </ul>
+        </nav>
+        <h1>Live Corona Counter Of The World</h1>
+    </header>
+        <hr>
+    <main>
+        
+        <section>
+            <aside>
+                <h2>Live Cases</h2>
+                <h4 class="odometer" id="cases">00000</h4>
+            </aside>
+            <aside>
+                <h2>Live deaths</h2>
+                <h4 class="odometer" id="deaths">00000</h4>
+            </aside>
+            <aside>
+                <h2>Recovered</h2>
+                <h4 class="odometer" id="recovered">00000</h4>
+            </aside>
+            <aside>
+                <h2>Live Active</h2>
+                <h4 class="odometer" id="active">00000</h4>
+            </aside>
+        </section>
+        <hr>
+        <h1>Countries</h1>
+        <section>
+            <aside>
+                <a href="india.html"><h2>India</h2></a>
+            </aside>
+        </section>
+
+    </main>
+
+    <script>
+        $(document).ready(function (){
+            setInterval(fetchdata,1000);
+        })
+            function fetchdata(){
+            $.ajax({
+                url : "https://corona.lmao.ninja/all",
+                type : "GET",
+                success: function (result){
+                    $("#cases").html(result.cases);
+                    $("#deaths").text(result.deaths);
+                    $("#recovered").text(result.recovered);
+                    $("#active").text(result.active);
+                }
+            })
+        }
+    
+    </script>
+</body>
+
+</html>

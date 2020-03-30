@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="https://via.placeholder.com/70x70">
+    <link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
+
+    <meta charset="utf-8">
+    <meta name="description" content="My description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="odometer.js"></script>
+    <link rel="stylesheet" href="odometer.css">
+    <title>India - Corona Counter</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1><a href="/">Corona Counter</a></h1>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>India</li>
+            </ul>
+        </nav>
+        <section>
+            <h1>Live corona counter for India</h1>
+            <br>
+            <img class="flag" width="auto" height="40px" src="https://raw.githubusercontent.com/NovelCOVID/API/master/assets/flags/in.png" >
+          </section>
+    </header>
+    
+    <main>
+        
+        
+        <section>
+            <aside>
+                <h2>Live Cases</h2>
+                <h4 class="odometer" id="cases">00000</h4>
+            </aside>
+            <aside>
+                <h2>Live deaths</h2>
+                <h4 class="odometer" id="deaths">00000</h4>
+            </aside>
+            <aside>
+                <h2>Recovered</h2>
+                <h4 class="odometer" id="recovered">00000</h4>
+            </aside>
+            <aside>
+                <h2>Live Active</h2>
+                <h4 class="odometer" id="active">00000</h4>
+            </aside> 
+            <aside>
+                <h2>Cases Per Million</h2>
+                <h4 class="odometer" id="casePerMillion">00000</h4>
+            </aside>
+            <aside>
+                <h2>Deaths Per Million</h2>
+                <h4 class="odometer" id="DeathsPerMillion">00000</h4>
+            </aside>
+            <aside>
+                <h2>Cases Today</h2>
+                <h4 class="odometer" id="casestoday">00000</h4>
+            </aside>
+            <aside>
+                <h2>Deaths Today</h2>
+                <h4 class="odometer" id="deathstoday">00000</h4>
+            </aside>
+            
+        </section>
+       
+    </main>
+
+    <script>
+        $(document).ready(function (){
+            setInterval(fetchdata,1000);
+        })
+            function fetchdata(){
+            $.ajax({
+                url : "https://corona.lmao.ninja/countries/ind",
+                type : "GET",
+                success: function (result){
+                    $("#cases").html(result.cases);
+                    $("#deaths").text(result.deaths);
+                    $("#recovered").text(result.recovered);
+                    $("#active").text(result.active);
+                    $("#casePerMillion").text(result.casesPerOneMillion);
+                    $("#DeathsPerMillion").text(result.deathsPerOneMillion);
+                    $("#casestoday").text(result.todayCases);
+                    $("#deathstoday").text(result.todayDeaths);
+                }
+            })
+        }
+    
+    </script>
+</body>
+
+</html>

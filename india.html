@@ -86,7 +86,7 @@
         })
             function fetchdata(){
             $.ajax({
-                url : "https://corona.lmao.ninja/countries/ind",
+                url : "https://corona.lmao.ninja/v2/countries/ind",
                 type : "GET",
                 success: function (result){
                     $("#cases").html(result.cases);

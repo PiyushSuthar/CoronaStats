@@ -70,7 +70,7 @@
         })
             function fetchdata(){
             $.ajax({
-                url : "https://corona.lmao.ninja/all",
+                url : "https://corona.lmao.ninja/v2/all",
                 type : "GET",
                 success: function (result){
                     $("#cases").html(result.cases);
